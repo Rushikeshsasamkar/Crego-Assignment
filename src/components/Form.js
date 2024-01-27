@@ -83,8 +83,35 @@ const InputForm = () => {
     const formattedJson = JSON.stringify(newJson, null, 2); // Add indentation for better readability
     setjsonFormat(formattedJson);
     setShowJson(true);
+  
+    // Initialize ClipboardJS
+    const clipboard = new ClipboardJS(".btn-secondary");
+  
+    // Set the target text directly
+    clipboard.text = function () {
+      return formattedJson;
+    };
+  
+    // Handle success event
+    clipboard.on("success", function (e) {
+      e.clearSelection();
+      // You can add any additional logic here when the copy is successful
+    });
+  
+    // Handle error event
+    clipboard.on("error", function (e) {
+      console.error("Unable to copy. Please try again manually.");
+    });
+  
+    // Destroy ClipboardJS when the component is unmounted
+    return () => {
+      clipboard.destroy();
+    };
+  
     console.log(formattedJson);
   };
+  
+  
 
   return (
     <>
@@ -231,19 +258,20 @@ const InputForm = () => {
         </Button>
       )}
      {showJson && (
-  <div className="jsonContainer" style={{justifyContent:"center",display:"flex", alignItems:"center"}}>
-    <div className="jsonWidth flex" style={{ margin: "10px", whiteSpace: "pre-wrap", background:'#c5c1c1', width:"90vh", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
-      <button 
+  <div className="jsonContainer" style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+    <div className="jsonWidth flex" style={{ margin: "10px", whiteSpace: "pre-wrap", background: '#c5c1c1', width: "90vh", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+      <button
         className="btn btn-secondary"
-        data-clipboard-target="#jsonContent"
-        style={{ marginBottom: "10px",marginTop:"10px" }}
+        style={{ marginBottom: "10px", marginTop: "10px" }}
+        onClick={handleGenerateJson}
       >
         Copy JSON
       </button>
-      <pre>{jsonFormat}</pre>
+      <pre id="jsonContent">{jsonFormat}</pre>
     </div>
   </div>
 )}
+
 
     </>
   );
