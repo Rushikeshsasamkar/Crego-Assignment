@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaTrash } from "react-icons/fa6";
+import ClipboardJS from "clipboard";
 
 const InputForm = () => {
   const [expression, setExpression] = useState({
@@ -229,11 +230,21 @@ const InputForm = () => {
           Generate JSON
         </Button>
       )}
-      {showJson && (
-        <div className="jsonWidth" style={{ margin: "10px", whiteSpace: "pre-wrap" }}>
-          <pre>{jsonFormat}</pre>
-        </div>
-      )}
+     {showJson && (
+  <div className="jsonContainer" style={{justifyContent:"center",display:"flex", alignItems:"center"}}>
+    <div className="jsonWidth flex" style={{ margin: "10px", whiteSpace: "pre-wrap", background:'#c5c1c1', width:"90vh", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+      <button 
+        className="btn btn-secondary"
+        data-clipboard-target="#jsonContent"
+        style={{ marginBottom: "10px",marginTop:"10px" }}
+      >
+        Copy JSON
+      </button>
+      <pre>{jsonFormat}</pre>
+    </div>
+  </div>
+)}
+
     </>
   );
 };
