@@ -81,16 +81,18 @@ const InputForm = () => {
     const rules = [...rulesArray];
     const newJson = { rules, combinator };
     const formattedJson = JSON.stringify(newJson, null, 2); // Add indentation for better readability
-    setjsonFormat(formattedJson);
+    const coloredJson = formattedJson.replace(/"(\w+)":/g, '"<span style="color: red;">$1</span>":');
+    const finalJson = coloredJson.replace(/"(\w+)",?/g, '"<span style="color: green;">$1</span>",');
+  
+    setjsonFormat(finalJson);
     setShowJson(true);
   
     // Initialize ClipboardJS
-    const clipboard = new ClipboardJS(".btn-secondary");
-  
-    // Set the target text directly
-    clipboard.text = function () {
-      return formattedJson;
-    };
+    const clipboard = new ClipboardJS(".btn-secondary", {
+      text: function () {
+        return formattedJson;
+      },
+    });
   
     // Handle success event
     clipboard.on("success", function (e) {
@@ -257,7 +259,7 @@ const InputForm = () => {
           Generate JSON
         </Button>
       )}
-     {showJson && (
+    {showJson && (
   <div className="jsonContainer" style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
     <div className="jsonWidth flex" style={{ margin: "10px", whiteSpace: "pre-wrap", background: '#c5c1c1', width: "90vh", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
       <button
@@ -267,10 +269,11 @@ const InputForm = () => {
       >
         Copy JSON
       </button>
-      <pre id="jsonContent">{jsonFormat}</pre>
+      <pre dangerouslySetInnerHTML={{ __html: jsonFormat }}></pre>
     </div>
   </div>
 )}
+
 
 
     </>
