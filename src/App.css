@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .inputForm {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .tableDiv {
+    width: 24rem;
+  }
+  .expTable {
+    width: 60rem;
+  }
+  .inputWidth {
+    width: 10.5rem;
+  }
+  .jsonWidth {
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 22rem;
+    overflow: auto;
+  }
+}
