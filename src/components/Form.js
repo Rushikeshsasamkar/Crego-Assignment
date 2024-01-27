@@ -81,6 +81,8 @@ const InputForm = () => {
     const rules = [...rulesArray];
     const newJson = { rules, combinator };
     const formattedJson = JSON.stringify(newJson, null, 2); // Add indentation for better readability
+  
+    // Add color styling to keys and values
     const coloredJson = formattedJson.replace(/"(\w+)":/g, '"<span style="color: red;">$1</span>":');
     const finalJson = coloredJson.replace(/"(\w+)",?/g, '"<span style="color: green;">$1</span>",');
   
@@ -109,9 +111,8 @@ const InputForm = () => {
     return () => {
       clipboard.destroy();
     };
-  
-    console.log(formattedJson);
   };
+  
   
   
 
@@ -239,7 +240,7 @@ const InputForm = () => {
                     <td>{data.output.value}</td>
                     <td>{data.output.score}</td>
                     <td>
-                      <FaTrash onClick={() => handleDelete(i)} />
+                      <FaTrash style={{cursor:"pointer"}} onClick={() => handleDelete(i)} />
                     </td>
                   </tr>
                 );
@@ -273,6 +274,8 @@ const InputForm = () => {
     </div>
   </div>
 )}
+
+
 
 
 
