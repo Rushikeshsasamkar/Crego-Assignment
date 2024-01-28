@@ -270,7 +270,7 @@ const InputForm = () => {
       >
         Copy JSON
       </button>
-      <pre style={{textAlign:'left', marginLeft:'20vh'}} dangerouslySetInnerHTML={{ __html: jsonFormat }}></pre>
+      <pre style={{textAlign:'left', marginLeft:'26vh'}} dangerouslySetInnerHTML={{ __html: jsonFormat }}></pre>
     </div>
   </div>
 )}
