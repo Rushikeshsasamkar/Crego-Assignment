@@ -268,8 +268,9 @@ const InputForm = () => {
         style={{ marginBottom: "10px", marginTop: "10px" }}
         onClick={handleGenerateJson}
       >
-        Copy JSON
+        Copy JSON 
       </button>
+      <p style={{position:"absolute", margin:'-6% 2% 2% 1%',fontStyle:"oblique"}}>JSON</p>
       <pre style={{textAlign:'left', marginLeft:'26vh'}} dangerouslySetInnerHTML={{ __html: jsonFormat }}></pre>
     </div>
   </div>
