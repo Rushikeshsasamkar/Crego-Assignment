@@ -262,7 +262,7 @@ const InputForm = () => {
       )}
     {showJson && (
   <div className="jsonContainer" style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-    <div className="jsonWidth flex" style={{ margin: "10px", whiteSpace: "pre-wrap", background: '#c5c1c1', width: "90vh", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}>
+    <div className="jsonWidth flex" style={{ margin: "10px", whiteSpace: "pre-wrap", background: "rgb(224 226 227)", width: "90vh", borderRadius: "10px", boxShadow: "rgba(0, 0, 1, 1) 0px 4px 8px" }}>
       <button
         className="btn btn-secondary"
         style={{ marginBottom: "10px", marginTop: "10px" }}
